@@ -14,6 +14,7 @@ export class PokemonService {
   }
 
   getPokemonDetails(pokemon:string): Observable<any> {
-    return this.Http.get(this.baseURL)
+    const url = `${this.baseURL}/${pokemon}`
+    return this.Http.get(url)
   }
 }
