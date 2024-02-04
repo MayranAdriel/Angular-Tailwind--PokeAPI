@@ -7,7 +7,7 @@ import { HomeComponent } from '../app/home/home.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HomeComponent],
+  imports: [CommonModule, RouterOutlet, HomeComponent ],
   template: `
   <app-home></app-home>
   <router-outlet></router-outlet>`,
