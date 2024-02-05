@@ -1,8 +1,12 @@
 <div class="text-center m-6 ">
-  <label for="pokemonList" class="md:mr-5 text-white"></label>
-  <input class="text-black" id="pokemonList" type="text" placeholder="ex: pikachu" [(ngModel)]="getPokemon">
-  <button (click)="getPokemonChosen()" class="bg-white ml-2 p-2">ADICIONAR</button>
+    <input class="text-black" id="pokemonList" type="text" placeholder="ex: pikachu" [(ngModel)]="getPokemon" required>
+
+    <button class="bg-white p-2 ml-2" (click)="getPokemonChosen()">ADICIONAR</button>
+
+  <button class="bg-red-700 text-black p-2 mt-2" (click)="deletePokemons()">CLEAR</button>
 </div>
+
+
 
 
 
@@ -13,7 +17,7 @@
   >
     <div class="flex flex-row gap-5 justify-center my-6">
       <h1 class="text-lg">{{ pokemon.name }}</h1>
-      <h1>#{{numberId}}</h1>
+      <h1>#{{pokemon.numberId}}</h1>
     </div>
     <div class="size-auto">
       <img
