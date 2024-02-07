@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonService } from '../../services/pokemon.service';
 import { FormsModule } from '@angular/forms';
+import { stat } from 'node:fs';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -24,6 +25,8 @@ export class PokemonCardComponent implements OnInit {
     imageUrl: '',
     types: [],
     numberId: 0,
+    statsName: [],
+    statsNumber: []
   };
 
   ngOnInit(): void {
@@ -39,11 +42,13 @@ export class PokemonCardComponent implements OnInit {
         name: data.name,
         imageUrl: data.sprites.front_default,
         types: data.types.map(
-          (type: { type: { name: any } }) => type.type.name
+          (type: { type: { name: string } }) => type.type.name
         ),
-        numberId: data.id
+        numberId: data.id,
+        statsName: data.stats.map((stat: { stat: { name: string; }; }) => stat.stat.name),
+        statsNumber: data.stats.map((stat: { base_stat: number }) => stat.base_stat.toString())
       };
-      console.log(data)
+      console.log(data.stats)
       this.pokemons.push(this.pokemon);
 
       localStorage.setItem('pokemons', JSON.stringify(this.pokemons));
