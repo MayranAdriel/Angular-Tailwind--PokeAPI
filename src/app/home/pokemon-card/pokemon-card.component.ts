@@ -35,7 +35,7 @@ export class PokemonCardComponent implements OnInit {
 
   getPokemonChosen() {
     if(this.getPokemon !== '') {
-    this.service.getPokemonDetails(this.getPokemon).subscribe((data) => {
+    this.service.getPokemonDetails(this.getPokemon.toLowerCase()).subscribe((data) => {
       this.pokemon = {
         name: data.name,
         imageUrl: data.sprites.front_default,
@@ -63,4 +63,6 @@ export class PokemonCardComponent implements OnInit {
     localStorage.removeItem('pokemons');
     this.pokemons = [];
   }
+
+
 }

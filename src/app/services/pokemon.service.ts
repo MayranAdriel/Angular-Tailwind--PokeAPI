@@ -25,9 +25,9 @@ export class PokemonService {
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
-      alert(`Aconteceu um erro por parte do cliente ${error.status}`)
+      alert(`Verifique se há internet! ${error.status}`)
     } else {
-      alert(`Pokemon não encontrado ${error.status}`)
+      alert(`Pokemon não encontrado! ${error.status}`)
     }
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }

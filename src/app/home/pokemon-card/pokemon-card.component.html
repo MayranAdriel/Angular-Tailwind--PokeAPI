@@ -1,43 +1,55 @@
-<div class="text-center m-6 ">
-    <input class="text-black" id="pokemonList" type="text" placeholder="Digite o nome ou o ID" [(ngModel)]="getPokemon" required>
+<div class="text-center m-6">
+  <input
+    class="text-black"
+    id="pokemonList"
+    type="text"
+    placeholder="Digite o nome ou o ID"
+    [(ngModel)]="getPokemon"
+  />
 
-    <button class="bg-white p-2 ml-2" (click)="getPokemonChosen()">ADICIONAR</button>
+  <button class="bg-white p-2 ml-2" (click)="getPokemonChosen()">
+    ADICIONAR
+  </button>
 
-  <button class="bg-red-700 text-black p-2 mt-2" (click)="deletePokemons()">CLEAR</button>
+  <button class="bg-red-700 text-black p-2 mt-2" (click)="deletePokemons()">
+    CLEAR
+  </button>
 </div>
 
 <div class="flex flex-wrap justify-center">
   <div
-  *ngFor="let pokemon of pokemons"
-    class=" flex flex-col items-center bg-black w-80 rounded-lg my-6 mx-2 text-white size-screen md:size-1/3 xl:size-1/5 capitalize"
+    *ngFor="let pokemon of pokemons"
+    class="flex flex-col items-center bg-white text-black w-80 rounded-lg my-6 mx-2 size-screen md:size-1/3 xl:size-1/5 capitalize"
   >
-
     <div class="flex flex-row gap-5 justify-center my-6">
-      <h1 class="text-lg">{{ pokemon.name }}</h1>
-      <h1>#{{pokemon.numberId}}</h1>
+      <h1 class="text-2xl font-black">{{ pokemon.name }}</h1>
+      <h1>#{{ pokemon.numberId }}</h1>
     </div>
     <div class="size-auto">
       <img
-        class="w-full h-60 rounded-2xl"
-        src="{{pokemon.imageUrl}}"
+        class="w-full h-60 rounded-2xl border border-black"
+        src="{{ pokemon.imageUrl }}"
         alt=""
       />
     </div>
-    <div class="flex flex-row flex-wrap justify-center my-2">
+    <div class="flex flex-row flex-wrap justify-center my-2 font-black">
       <div *ngFor="let type of pokemon.types">
         <ng-container [ngSwitch]="type">
+          <div *ngSwitchCase="'grass'" class="bg-green-500 p-3 rounded-lg m-1">
+            {{ type }}
+          </div>
+
           <div
-            *ngSwitchCase="'grass'"
-            class="bg-green-600 p-3 rounded-lg m-1"
+            *ngSwitchCase="'poison'"
+            class="bg-purple-950 p-3 rounded-lg m-1"
           >
             {{ type }}
           </div>
 
-          <div *ngSwitchCase="'poison'" class="bg-purple-950 p-3 rounded-lg m-1">
-            {{ type }}
-          </div>
-
-          <div *ngSwitchCase="'electric'" class="bg-yellow-400 p-3 rounded-lg m-1">
+          <div
+            *ngSwitchCase="'electric'"
+            class="bg-yellow-400 p-3 rounded-lg m-1"
+          >
             {{ type }}
           </div>
 
@@ -45,35 +57,47 @@
             {{ type }}
           </div>
 
-          <div *ngSwitchCase="'normal'" class="bg-yellow-700 p-3 rounded-lg m-1">
+          <div
+            *ngSwitchCase="'normal'"
+            class="bg-gray-600 p-3 rounded-lg m-1"
+          >
             {{ type }}
           </div>
 
-          <div *ngSwitchCase="'fire'" class="bg-orange-700 p-3 rounded-lg m-1">
+          <div *ngSwitchCase="'fire'" class="bg-orange-500 p-3 rounded-lg m-1">
             {{ type }}
           </div>
 
-          <div *ngSwitchDefault class="bg-blue-950 p-3 rounded-lg m-1">{{type}}</div>
+          <div *ngSwitchDefault class="bg-blue-600 p-3 rounded-lg m-1">
+            {{ type }}
+          </div>
         </ng-container>
       </div>
     </div>
 
-<div class="w-full hidden">
-  <ul class="text-center">
-    <li>{{pokemon.statsName[0]}}</li>
-    <li>{{pokemon.statsNumber[0]}}</li>
-    <li>{{pokemon.statsName[1]}}</li>
-    <li>{{pokemon.statsNumber[1]}}</li>
-    <li>{{pokemon.statsName[2]}}</li>
-    <li>{{pokemon.statsNumber[2]}}</li>
-    <li>{{pokemon.statsName[3]}}</li>
-    <li>{{pokemon.statsNumber[3]}}</li>
-    <li>{{pokemon.statsName[4]}}</li>
-    <li>{{pokemon.statsNumber[4]}}</li>
-  </ul>
-</div>
-
+    <div class="w-full font-black text-sm text-center mb-2">
+      <ul class="grid grid-cols-2">
+        <div>
+          <li>{{ pokemon.statsName[0] }}</li>
+          <li>{{ pokemon.statsNumber[0] }}</li>
+        </div>
+        <div>
+          <li>{{ pokemon.statsName[1] }}</li>
+          <li>{{ pokemon.statsNumber[1] }}</li>
+        </div>
+        <div>
+          <li>{{ pokemon.statsName[2] }}</li>
+          <li>{{ pokemon.statsNumber[2] }}</li>
+        </div>
+        <div>
+          <li>{{ pokemon.statsName[3] }}</li>
+          <li>{{ pokemon.statsNumber[3] }}</li>
+        </div>
+        <div class="col-span-2">
+          <li>{{ pokemon.statsName[4] }}</li>
+          <li>{{ pokemon.statsNumber[4] }}</li>
+        </div>
+      </ul>
+    </div>
   </div>
-
-
 </div>
