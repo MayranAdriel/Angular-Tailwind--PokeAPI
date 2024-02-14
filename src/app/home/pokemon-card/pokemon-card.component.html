@@ -5,6 +5,7 @@
     type="text"
     placeholder="Digite o nome ou o ID"
     [(ngModel)]="getPokemon"
+    (keydown.enter)="getPokemonChosen()"
   />
 
   <button class="bg-white p-2 ml-2" (click)="getPokemonChosen()">
