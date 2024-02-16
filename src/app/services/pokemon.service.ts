@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import {PokemonCardComponent} from '../home/pokemon-card/pokemon-card.component'
 
 @Injectable({
   providedIn: 'root',

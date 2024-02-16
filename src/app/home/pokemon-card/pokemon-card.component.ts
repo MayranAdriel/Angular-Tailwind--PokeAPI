@@ -34,34 +34,49 @@ export class PokemonCardComponent implements OnInit {
   }
 
   getPokemonChosen() {
-    if(this.getPokemon !== '') {
-    this.service.getPokemonDetails(this.getPokemon.toLowerCase()).subscribe((data) => {
-      this.pokemon = {
-        name: data.name,
-        imageUrl: data.sprites.front_default,
-        types: data.types.map(
-          (type: { type: { name: string } }) => type.type.name
-        ),
-        numberId: data.id,
-        statsName: data.stats.map(
-          (stat: { stat: { name: string } }) => stat.stat.name
-        ),
-        statsNumber: data.stats.map((stat: { base_stat: number }) =>
-          stat.base_stat.toString()
-        ),
-      };
-      this.pokemons.push(this.pokemon);
+    if (this.getPokemon !== '') {
+      this.service
+        .getPokemonDetails(this.getPokemon.toLowerCase())
+        .subscribe((data) => {
+          if (this.alreadyAdded(data.name) === false) {
+            this.pokemon = {
+              name: data.name,
+              imageUrl: data.sprites.front_default,
+              types: data.types.map(
+                (type: { type: { name: string } }) => type.type.name
+              ),
+              numberId: data.id,
+              statsName: data.stats.map(
+                (stat: { stat: { name: string } }) => stat.stat.name
+              ),
+              statsNumber: data.stats.map((stat: { base_stat: number }) =>
+                stat.base_stat.toString()
+              ),
+            };
+            this.pokemons.push(this.pokemon);
 
-      localStorage.setItem('pokemons', JSON.stringify(this.pokemons));
-    });
-  } else {
-    alert('Preencha o campo de pesquisa!');
+            localStorage.setItem('pokemons', JSON.stringify(this.pokemons));
+          } else {
+            alert(`Esse Pokémon (${data.name}) já foi adicionado!`);
+          }
+        });
+    } else {
+      alert('Preencha o campo de pesquisa!');
+    }
   }
-}
+
+  alreadyAdded(name: string) {
+    let toCheckName = false
+    this.pokemons.forEach(toCheck => {
+      if (toCheck.name === name) {
+        toCheckName = true;
+      }
+    });
+    return toCheckName;
+  }
 
   deletePokemons() {
     localStorage.removeItem('pokemons');
     this.pokemons = [];
   }
-
 }
