@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonService } from '../../services/pokemon.service';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-pokemon-card',
@@ -57,17 +58,17 @@ export class PokemonCardComponent implements OnInit {
 
             localStorage.setItem('pokemons', JSON.stringify(this.pokemons));
           } else {
-            alert(`Esse Pokémon (${data.name}) já foi adicionado!`);
+            Swal.fire(`Esse Pokémon (${data.name}) já foi adicionado!`)
           }
         });
     } else {
-      alert('Preencha o campo de pesquisa!');
+      Swal.fire('Digite um Pokémon para adicionar!')
     }
   }
 
   alreadyAdded(name: string) {
-    let toCheckName = false
-    this.pokemons.forEach(toCheck => {
+    let toCheckName = false;
+    this.pokemons.forEach((toCheck) => {
       if (toCheck.name === name) {
         toCheckName = true;
       }

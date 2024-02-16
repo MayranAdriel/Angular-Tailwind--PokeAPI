@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import Swal from 'sweetalert2'
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +25,18 @@ export class PokemonService {
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
-      alert(`Verifique se há internet! ${error.status}`)
+      Swal.fire({
+        icon: 'warning',
+        title: 'Erro de conexão',
+        text: 'Verifique sua conexão com a internet e tente novamente',
+      })
     } else {
-      alert(`Pokemon não encontrado! ${error.status}`)
+      Swal.fire({
+        icon: 'error',
+        title: `Pokemon não encontrado! ${error.status}`,
+        text: 'Tente com outro nome',
+
+      })
     }
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
