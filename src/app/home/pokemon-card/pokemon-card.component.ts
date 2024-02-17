@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonService } from '../../services/pokemon.service';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+
+
 
 @Component({
   selector: 'app-pokemon-card',
